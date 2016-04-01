@@ -5,15 +5,31 @@
  */
 package com.cherepushko.officesim;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author panasoft
  */
-public class Employee {
+public class Employee implements IEmployee{
+
+    public Employee() {
+        
+    }
     
     enum Position{DIRECTOR, PROGRAMMER, DESIGNER, TESTER, 
                     MANAGER, ACCOUNTANT, CLEANER};
     
+    private ArrayList<Position> position = new ArrayList<Position>();
+    private int hours = 0;
+    private boolean busy = false;
+    
+    public boolean isBusy(){ return busy; };
+    
+    @Override
+    public int doWork(){
+        return 0;
+    };
     
     
 }
