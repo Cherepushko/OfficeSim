@@ -10,7 +10,7 @@ package com.cherepushko.officesim;
  * @author panasoft
  */
 public interface IEmployee {
-    
-    public void doWork();
+        
+    public int doWork();
     
 }

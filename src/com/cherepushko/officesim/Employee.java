@@ -11,6 +11,9 @@ package com.cherepushko.officesim;
  */
 public class Employee {
     
-    enum Position{DIRECTOR, MANAGER, PROGRAMMER, TESTER};
+    enum Position{DIRECTOR, PROGRAMMER, DESIGNER, TESTER, 
+                    MANAGER, ACCOUNTANT, CLEANER};
+    
+    
     
 }
