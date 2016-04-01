@@ -9,10 +9,12 @@ package com.cherepushko.officesim;
  *
  * @author panasoft
  */
-public interface IEmployee {
-        
-    public int doWork();
-    
-    public boolean addPosition(Position position);
-    
+public class Position{
+    private String position;
+    private int salary;
+
+    public Position(String p, int s){
+        this.position = p;
+        this.salary = s;
+    }
 }

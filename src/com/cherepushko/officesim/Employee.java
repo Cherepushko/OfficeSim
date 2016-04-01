@@ -6,6 +6,9 @@
 package com.cherepushko.officesim;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  *
@@ -13,14 +16,14 @@ import java.util.ArrayList;
  */
 public class Employee implements IEmployee{
 
-    public Employee() {
-        
-    }
+    public Employee() {}
     
-    enum Position{DIRECTOR, PROGRAMMER, DESIGNER, TESTER, 
-                    MANAGER, ACCOUNTANT, CLEANER};
+
     
-    private ArrayList<Position> position = new ArrayList<Position>();
+    public static String[] POSITIONS = {"DIRECTOR", "PROGRAMMER", "DESIGNER", "TESTER", 
+                    "MANAGER", "ACCOUNTANT", "CLEANER"};
+    
+    private SortedSet<Position> position = new TreeSet<Position>();
     private int hours = 0;
     private boolean busy = false;
     
@@ -29,6 +32,11 @@ public class Employee implements IEmployee{
     @Override
     public int doWork(){
         return 0;
+    };
+    
+    @Override
+    public boolean addPosition(Position position){
+        return this.position.add(position);
     };
     
     
