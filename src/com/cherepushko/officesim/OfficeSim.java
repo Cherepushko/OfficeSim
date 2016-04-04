@@ -18,6 +18,7 @@ public class OfficeSim {
         Office office = new Office();
         office.generateEmployees();
         office.printEmployees();
+//        office.printSchedules();
     }
     
 }
