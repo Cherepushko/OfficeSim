@@ -38,12 +38,16 @@ public class Schedule {
             Day d = new Day();
             d.setName(DAY_LABELS[current_label - 1]);
             d.setHours(hoursInWeek < 8 ? hoursInWeek : 1 + r.nextInt(8));
+            hoursInWeek -= d.getHours();
             w.addDay(d);
+            current_label++;
         }
         
     };
     
-    private class Day{
+    public ArrayList<Week> getWeeks(){ return this.weeks; };
+    
+    public class Day{
         private String label;
         private int hours = 0;
         
@@ -54,12 +58,14 @@ public class Schedule {
         public void   setHours(int i){ this.hours = i; };
     }
     
-    private class Week{
+    public class Week{
         private ArrayList<Day> days = new ArrayList<Day>();
         
         public void addDay(Day d){
             days.add(d);        
         };
+        
+        public ArrayList<Day> getDays(){ return this.days; };
         
         public int getHours(){ 
             int hours = 0;
