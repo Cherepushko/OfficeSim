@@ -61,6 +61,11 @@ public class Office {
             for(Day d : w.getDays()){
                 while(true){
                     if(d.getHours() == 0) break;
+                    //d.getHours() < 2
+                    Order order = new Order();
+                    order.setPriority(r.nextInt(6)); // приоритет 0 - 5
+                    order.setCommand(this.COMMANDS[
+                                            r.nextInt(this.COMMANDS.length)]);
                     
                 }
             }
@@ -68,7 +73,6 @@ public class Office {
     
         giveOrder();
         
-        Random r = new Random();
         int rn = r.nextInt(6);
         int rc = 0;
         if(rn == 0)
