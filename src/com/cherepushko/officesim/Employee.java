@@ -8,6 +8,7 @@ package com.cherepushko.officesim;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -19,6 +20,7 @@ public class Employee implements IEmployee{
 
     private SortedSet<Position> positions = new TreeSet<Position>();
     private Schedule schedule = new Schedule(this);
+    private ArrayList<String>   incommingCommands = new ArrayList<String>();
     
     private Position currentPosition;
     private String  name;
@@ -61,24 +63,24 @@ public class Employee implements IEmployee{
     };
     
     @Override
-    public void command (String s){
-        
+    public void selectCommand() {
+        Random r = new Random();
         if(this.busy) return;
-        switch(s){
-            case "писать код":
-                Position p = this.getPosition(Office.POSITIONS[3]);
-                if(p != null){
-                    
-                }                    
-                break;
-        }
-        
+        Position p = 
+                this.getPosition(Office.positionFromCommand.get("писать код"));
+        if(p != null){
+            p.newTask(1 + r.nextInt(1));
+            this.busy = true;
+        }         
+    }
+    
+    @Override
+    public void command (String s){
+        this.incommingCommands.add(s);
     };
     
     @Override
     public boolean addPosition(Position position){
         return this.positions.add(position);
-    };
-    
-    
+    }; 
 }
