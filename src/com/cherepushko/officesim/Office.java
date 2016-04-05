@@ -153,12 +153,31 @@ public class Office {
     
     public void printSchedules(){
         int i = 1;
-        for (Employee e: employees){
+        for (Employee e: this.employees){
             System.out.println(i + ":: Name: " + e.getName()
                 + " Surname: " + e.getSurname()
                 + " Workerd Time: " + e.getWorkedTime());
             i++;
             ArrayList<Schedule.Week> weeks = e.getSchedule().getWeeks();
+            for(Schedule.Week w : weeks){
+                System.out.println("Hours: " + w.getHours());
+                ArrayList<Schedule.Day> days = w.getDays();
+                for(Schedule.Day d : days){
+                    System.out.println(d.getName() + ": " + d.getHours());
+                }
+            }
+        }
+    };
+    
+    public void printReport(){
+        int i = 1;
+        for (Employee e: this.employees){
+            System.out.println(i + "> Name: " + e.getName()
+                + " Surname: " + e.getSurname()
+                + " Workerd Time: " + e.getWorkedTime());
+            i++;
+            ArrayList<Schedule.Week> weeks = e.getSchedule().getWeeks();
+            System.out.println("Weeks: " + weeks.size());            
             for(Schedule.Week w : weeks){
                 System.out.println("Hours: " + w.getHours());
                 ArrayList<Schedule.Day> days = w.getDays();
