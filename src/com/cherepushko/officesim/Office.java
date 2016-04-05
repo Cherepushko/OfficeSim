@@ -59,33 +59,45 @@ public class Office {
         
         for(Week w : schedule.getWeeks()){
             for(Day d : w.getDays()){
-                while(true){
-                    if(d.getHours() == 0) break;
-                    //d.getHours() < 2
-                    Order order = new Order();
-                    order.setPriority(r.nextInt(6)); // приоритет 0 - 5
-                    order.setCommand(this.COMMANDS[
-                                            r.nextInt(this.COMMANDS.length)]);
-                    
+                for(int i = 1; i <= 8; i++){
+                    giveOrder(d);
                 }
+                this.doWork();
             }
         }
     
-        giveOrder();
         
         int rn = r.nextInt(6);
         int rc = 0;
         if(rn == 0)
             rc = 1 + r.nextInt(3);
-        for(int i = 0; i < rc; i++)
-            giveOrder();
+        for(int i = 0; i < rc; i++){}
         
     };
     
     private void day(){};
     private void week(){};
     
-    private void giveOrder(){};
+    private boolean giveOrder(Day d){
+        Random r = new Random();
+        if(d.getHours() == 0) return false;
+            //d.getHours() < 2
+            Order order = new Order();
+            order.setPriority(r.nextInt(6)); // приоритет 0 - 5
+            order.setCommand(this.COMMANDS[
+                                    r.nextInt(this.COMMANDS.length)]);
+            order.setPosition(this.positionFromCommand.get(
+                                    order.getCommand()));
+            for(Employee e : this.employees)
+                e.command(order);
+        return true;
+    };
+    
+    public void doWork(){
+        for (Employee e: this.employees){
+            e.doWork();
+        }
+    };
     
     public void generateEmployees(){
         Random r = new Random();
@@ -125,7 +137,7 @@ public class Office {
 
     public void printEmployees(){
         int i = 1;
-        for (Employee e: employees){
+        for (Employee e: this.employees){
             System.out.println(i + ":: Name: " + e.getName()
                 + " Surname: " + e.getSurname()
                 + " Workerd Time: " + e.getWorkedTime());
