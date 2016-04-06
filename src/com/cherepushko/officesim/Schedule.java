@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.cherepushko.officesim;
 
 import java.util.ArrayList;
@@ -10,11 +5,11 @@ import java.util.Random;
 
 /**
  *
- * @author panasoft
+ * @author Panas Cherepushko
  */
 public class Schedule {
     
-    public static int DAYS_IN_MONTH = 31;
+    public final static int DAYS_IN_MONTH = 31;
     
     private static String[] DAY_LABELS = {"Mo", "Tu", "We", "Th", 
                                           "Fr", "Sa", "Su"};
@@ -43,6 +38,25 @@ public class Schedule {
             current_label++;
         }
         
+    };
+    
+    public Schedule(){
+    
+        Week w = new Week();
+        weeks.add(w);
+        int current_label = 1;
+        for(int i = 1; i <= DAYS_IN_MONTH; i++){
+            if(current_label > 7){
+                current_label = 1;
+                w = new Week();
+                weeks.add(w);
+            }
+            Day d = new Day();
+            d.setName(DAY_LABELS[current_label - 1]);
+            d.setHours(8);
+            w.addDay(d);
+            current_label++;
+        }
     };
     
     public ArrayList<Week> getWeeks(){ return this.weeks; };

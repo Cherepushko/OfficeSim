@@ -1,12 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author Panas Cherepushko
  */
 package com.cherepushko.officesim;
 
 import com.cherepushko.officesim.Schedule.Week;
 import com.cherepushko.officesim.Schedule.Day;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -186,6 +189,31 @@ public class Office {
                 }
             }
         }
+    };
+    
+    public void saveReport(){
+        try{
+            FileWriter fw = new FileWriter(new File("report.txt"));
+            String s = new String();
+            int i = 1;
+            for (Employee e: this.employees){
+                fw.write(i + "> Name: " + e.getName()
+                    + " Surname: " + e.getSurname()
+                    + " Workerd Time: " + e.getWorkedTime() + "\n");
+                i++;
+                ArrayList<Schedule.Week> weeks = e.getSchedule().getWeeks();
+                fw.write("Weeks: " + weeks.size() + "\n");            
+                for(Schedule.Week w : weeks){
+                    fw.write("Hours: " + w.getHours());
+                    ArrayList<Schedule.Day> days = w.getDays();
+                    for(Schedule.Day d : days){
+                        fw.write(d.getName() + ": " + d.getHours() + "\n");
+                    }
+                }
+            }
+            fw.write("Report saved\n");
+            fw.flush();
+        }catch(IOException ex){System.err.println("IO Exception" + ex);}
     };
     
 }

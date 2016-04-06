@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.cherepushko.officesim;
 
 /**
  *
- * @author panasoft
+ * @author Panas Cherepushko
  */
 public class Position implements Comparable{
     private String position;
     private int salary;
+    private int hoursToWork = 0;
+    private int workedHours = 0;
     
     public String getPosition(){ return this.position;};
     public int getSalary(){ return this.salary;};
@@ -28,4 +25,19 @@ public class Position implements Comparable{
             return 1;
         return -1;
     }
+    
+    public void iWorkedOneHour(){
+        if(this.hoursToWork > 0){
+            this.hoursToWork--;
+            this.workedHours++;
+        }
+    };
+    
+    public int getHoursToWork(){ return this.hoursToWork; };
+    public int getWorkedHours(){ return this.workedHours; };
+    
+    public int newTask(int h){ 
+        return this.hoursToWork = h >= 1 && h <= 2 ? h : 1;
+    };
+    
 }
